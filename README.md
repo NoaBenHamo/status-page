@@ -8,7 +8,7 @@ Our project had three primary objectives in mind, which were to prioritize:
 - cost-effectiveness
 - high availability and scalability
 
-#### The architecture we built on AWS looks like this:
+## The architecture we built on AWS:
 ![arch](https://user-images.githubusercontent.com/117725271/224322465-470708e5-7b32-4497-b987-f4a9099d25e5.png)
 
 #### Security:
@@ -16,7 +16,7 @@ Our project had three primary objectives in mind, which were to prioritize:
 - we implemented specific security rules for each type of instance in order to isolate them and minimize the chances of opening unnecessary ports. This further increased the security of the architecture and helped to mitigate potential threats.
 - To further strengthen our security measures, we implemented a Web Application Firewall (WAF) with our load balancer. The WAF provided protection against SQL injection attacks and anonymous connections to our application (such as VPN), while also defending against bot attacks. Additionally, we incorporated a CAPTCHA feature to make our system even more resistant to unauthorized access attempts. 
 
-- Due to time constraints and a deadline, we made some compromises with regards to the security of our CI and test servers. Specifically, we were not able to fully isolate the test environment and had to place the test and CI server in public subnets.
+- *Due to time constraints and a deadline, we made some compromises with regards to the security of our CI and test servers. Specifically, we were not able to fully isolate the test environment and had to place the test and CI server in public subnets.*
 
 #### Availability:
 - To ensure maximum availability of our system, we have adopted a multi-AZ deployment approach. This approach involves replicating our infrastructure across multiple Availability Zones (AZs) in a given region, providing resiliency and redundancy in the event of a single AZ failure.
@@ -24,3 +24,12 @@ Our project had three primary objectives in mind, which were to prioritize:
 
 #### Scalability:
 - By deploying our application in an Auto Scaling Group, we gained the benefits of flexibility and scalability as needed. The ASG allowed us to automatically adjust the number of instances running our application in response to changes in demand, ensuring that we could meet our performance and capacity requirements at all times. Additionally, the ASG ensured that we had a reliable and fault-tolerant architecture, by automatically replacing unhealthy instances.
+
+#### Cost-Effectiveness:
+- Our project's infrastructure costs around $200 monthly, with the RDS being the main expense. Our focus is on cost-effectiveness and simplicity, utilizing t3.medium or t3.small hardware to handle the workload, with assistance from the LB and ASG. The RDS expense is around $50 per month, with the smallest maintainable option used for production, while ElastiCache (with a replica) adds another ~ $50. Other expenses come from sources such as WAF, ELB traffic, instances, and more. Although we considered the free tier, we decided it wasn't suitable for production needs.
+
+## Our CI/CD pipeline:
+![cicd](https://user-images.githubusercontent.com/117725271/225620292-737e0010-a868-4c02-b784-9bf88ca76507.png)
+
+### CI:
+- 
