@@ -31,5 +31,5 @@ Our project had three primary objectives in mind, which were to prioritize:
 ## Our CI/CD pipeline:
 ![cicd](https://user-images.githubusercontent.com/117725271/225620292-737e0010-a868-4c02-b784-9bf88ca76507.png)
 
-### CI:
+#### CI:
 - 
