@@ -35,7 +35,16 @@ Our project had three primary objectives in mind, which were to prioritize:
 - Here is an overview of the CI process:
   1. Trigger: Any push event on the main branch triggers the build process.
   2. Build: Our runner (CI server) builds the image using the Dockerfile we have created.
-  3. Push: The built image is then pushed from the runner to our Amazon Elastic Container Registry (ECR).
-  
+  3. Push: The built image is then pushed from the runner to our Amazon Elastic Container Registry (ECR) with a 'latest' tag.
+
+- Our runner server has a scheduled job that automatically removes redundant containers and images every three hours to free up space and reduce its workload from previous workflows.
+
 #### CD:
-- Here is an overview of the CD process:
+- Our CD process is triggered whenever a new image is added to the Amazon Elastic Container Registry (ECR). Here is an overview of the CD process:
+  1. The latest image is deployed to the test server through the AWS CodeDeploy service. This stage ensures that the deployment process completes successfully without any errors.
+  2. During the testing stage, we verify that the deployed app is able to communicate with the internet and is functioning correctly without any issues.
+  3. Once the testing stage is completed, the process is repeated in the production environment. The latest image is deployed to the production servers, targeting our production Auto Scaling Group (ASG), and updating the instances running the app with the new feature/update. Finally, CodeDeploy verifies that the app is running smoothly in the production environment.
+  
+## Project Wrap-Up:
+During the course of the project, we made significant changes to our architecture which made us better look at the big picture of things. We shifted from a Docker Compose-based setup (which would be great to use as a test env) to cloud-based resources such as RDS and ElastiCache. While the first approach was simpler and cheaper, we realized it wasn't suitable for a production environment. Instead, we switched to using RDS for a managed PostgreSQL DB and Elasticache for Redis, making the project more compatible for production use. Though this approach is more expensive, it offers better scalability and security.
+In conclusion, we learned that different environments require different infrastructure setups and consideration of all aspects, and we're confident that our final architecture will best serve both developers and users.
