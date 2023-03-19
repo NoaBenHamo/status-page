@@ -32,4 +32,10 @@ Our project had three primary objectives in mind, which were to prioritize:
 ![cicd](https://user-images.githubusercontent.com/117725271/225620292-737e0010-a868-4c02-b784-9bf88ca76507.png)
 
 #### CI:
-- 
+- Here is an overview of the CI process:
+  1. Trigger: Any push event on the main branch triggers the build process.
+  2. Build: Our runner (CI server) builds the image using the Dockerfile we have created.
+  3. Push: The built image is then pushed from the runner to our Amazon Elastic Container Registry (ECR).
+  
+#### CD:
+- Here is an overview of the CD process:
