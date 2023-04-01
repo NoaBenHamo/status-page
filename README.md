@@ -1,5 +1,3 @@
-#### (This README file is still in the making...)
-
 # *Bootcamp Final Project: Building and Deploying Cloud-Based Application on AWS Architecture with Efficient CI/CD Pipelines.*
 **(The source code for the application originates from the following GitHub repository: https://github.com/status-page/status-page).**
 
